@@ -28,17 +28,17 @@ namespace Wpf.Master.Company
             set { _Name = value; NotifyPropertyChanged(); }
         }
 
-        private IEnumerable<Country> _Countries;
+        private IEnumerable<BO.Country> _Countries;
 
-        public IEnumerable<Country> Countries
+        public IEnumerable<BO.Country> Countries
         {
             get { return _Countries; }
             set { _Countries = value; NotifyPropertyChanged(); }
         }
 
-        private Country _Country;
+        private BO.Country _Country;
 
-        public Country Country
+        public BO.Country Country
         {
             get { return _Country; }
             set { _Country = value; NotifyPropertyChanged(); }

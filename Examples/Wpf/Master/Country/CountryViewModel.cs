@@ -43,20 +43,35 @@ namespace Wpf.Master.Country
                 return;
             }
 
-            BO.Country country = editCountry ?? new BO.Country();
+            BO.Country tempCountry = editCountry ?? new BO.Country();
             if (editCountry==null)
             {
-                country.CreatedBy = "System";
-                country.CreatedDate = DateTime.Now;
+                tempCountry.CreatedBy = "System";
+                tempCountry.CreatedDate = DateTime.Now;
             }
 
+            tempCountry.Name = Name;
+
+            CountryService countryService = new CountryService();    
+
+            if (tempCountry.CountryId==0)
+            {
+                countryService.Insert(tempCountry);
+            }
+            else
+            {
+                countryService.Update(tempCountry);
+            }
+
+            Clear();
         }
 
         public ICommand ClearCommand { get; set; }
 
         public void Clear()
         {
-
+            editCountry = null;
+            Name = null;
         }
 
     }
