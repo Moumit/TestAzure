@@ -22,6 +22,7 @@
           </Key>
           <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
@@ -96,7 +97,7 @@
           <Property Name="Status" Type="TestAzureModel.CompanyStatus" Nullable="false" />
           <Property Name="CountryId" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Company_country" FromRole="Company" ToRole="Country" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Company" FromRole="Company" ToRole="Employee" />
         </EntityType>
@@ -107,8 +108,9 @@
           <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Companies" Relationship="Self.FK_Company_country" FromRole="Country" ToRole="Company" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -119,7 +121,7 @@
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Company" Relationship="Self.FK_Employee_Company" FromRole="Employee" ToRole="Company" />
         </EntityType>
         <EntityType Name="EmployeeStatusType">
@@ -129,7 +131,7 @@
           <Property Name="EmployeeStatusTypeId" Type="Int32" Nullable="false" />
           <Property Name="DisplayText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="FK_Company_country">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
@@ -194,6 +196,7 @@
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="TestAzureModel.Country">
               <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
